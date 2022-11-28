@@ -5,9 +5,22 @@ import pickle
 from streamlit_option_menu import option_menu
 import sklearn
 import base64
+from sklearn.preprocessing import StandardScaler
 
-d_model= pickle.load(open('diabetes.pkl', 'rb'))
+
+scaler = StandardScaler()
+d_model= pickle.load(open('diabete.pkl', 'rb'))
 h_model= pickle.load(open('heart.pkl', 'rb'))
+def d_prediction(A,B,C,D,E,F,G,H):
+    ipd = (A,B,C,D,E,F,G,H)
+    #print(ipd)
+    ipd_as_na = np.asarray(ipd)
+    std = ipd_as_na.reshape(1, -1)
+    #print(std)
+    std_data = scaler.fit_transform(std)
+    #print(std_data)
+    pred = d_model.predict(std_data)
+    return pred
 
 def add_bg_from_local(image_file):
     with open(image_file, "rb") as image_file:
@@ -70,8 +83,8 @@ if (selected == 'Diabetes Prediction' ):
     # creating a button for Prediction
 
     if st.button('Diabetes Test Result'):
-        diab_prediction = d_model.predict(
-            [[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
+        diab_prediction = d_prediction(
+            Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age)
 
         if (diab_prediction[0] == 1):
             diab_diagnosis = 'The person is diabetic'
