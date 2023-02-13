@@ -9,7 +9,7 @@ from sklearn.preprocessing import StandardScaler
 
 
 scaler = StandardScaler()
-d_model= pickle.load(open('diabete.pkl', 'rb'))
+d_model= pickle.load(open('diabetee.pkl', 'rb'))
 h_model= pickle.load(open('heart.pkl', 'rb'))
 def d_prediction(A,B,C,D,E,F,G,H):
     ipd = (A,B,C,D,E,F,G,H)
@@ -17,9 +17,9 @@ def d_prediction(A,B,C,D,E,F,G,H):
     ipd_as_na = np.asarray(ipd)
     std = ipd_as_na.reshape(1, -1)
     #print(std)
-    std_data = scaler.fit_transform(std)
+    #std_data = scaler.fit_transform(std)
     #print(std_data)
-    pred = d_model.predict(std_data)
+    pred = d_model.predict(std)
     return pred
 
 def add_bg_from_local(image_file):
