@@ -60,7 +60,7 @@ if (selected == 'Diabetes Prediction' ):
         Glucose = st.text_input('Glucose Level')
 
     with col3:
-        BloodPressure = st.text_input('Blood Pressure value')
+        BloodPressure = st.text_input('Blood Pressure value(systolic)')
 
     with col1:
         SkinThickness = st.text_input('Skin Thickness value')
@@ -138,7 +138,7 @@ if(selected =='Heart Disease Prediction'):
         ca = st.text_input('Major vessels colored by flourosopy')
 
     with col1:
-        thal = st.text_input('thal:' , '0 = normal; 1 = fixed defect; 2 = reversable defect')
+        thal = st.text_input('Thalassemia:' , '0 = normal; 1 = fixed defect; 2 = reversable defect')
 
     # code for Prediction
     heart_diagnosis = ''
